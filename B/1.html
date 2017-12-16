@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B1</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            outline: 0px;
+            border: 0px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+
+        #body-wrapper{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content:center;
+        }
+
+        .key{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            font-size: 36px;
+
+        }
+
+        @media screen and (max-width: 600px) {
+            .key{
+                width: 75px;
+                height: 75px;
+            }
+        }
+
+        @media screen and (max-width: 490px) {
+            .key{
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="body-wrapper">
+        <div class="key" id="a">A</div>
+        <div class="key" id="s">S</div>
+        <div class="key" id="d">D</div>
+        <div class="key" id="f">F</div>
+        <div class="key" id="g">G</div>
+        <div class="key" id="h">H</div>
+        <div class="key" id="j">J</div>
+        <div class="key" id="k">K</div>
+        <div class="key" id="l">L</div>
+    </div>
+
+    <script type="text/javascript">
+        var key = document.getElementsByClassName("key");
+        var sndA  = new Audio("1_asset/A.wav");
+        var sndS  = new Audio("1_asset/S.wav");
+        var sndD  = new Audio("1_asset/D.wav");
+        var sndF  = new Audio("1_asset/F.wav");
+        var sndG  = new Audio("1_asset/G.wav");
+        var sndH  = new Audio("1_asset/H.wav");
+        var sndJ  = new Audio("1_asset/J.wav");
+        var sndK  = new Audio("1_asset/K.wav");
+        var sndL  = new Audio("1_asset/L.wav");
+
+        var eventListeners = [
+            function(){
+                sndA.play();
+                sndA.currentTime = 0;
+                key[0].style.backgroundColor = "#444444";
+                key[0].style.color="#ffffff";
+            },
+            function(){
+                sndS.play();
+                sndS.currentTime = 0;
+                key[1].style.backgroundColor = "#444444";
+                key[1].style.color="#ffffff";
+            },
+            function(){
+                sndD.play();
+                sndD.currentTime = 0;
+                key[2].style.backgroundColor = "#444444";
+                key[2].style.color="#ffffff";
+            },
+            function(){
+                sndF.play();
+                sndF.currentTime = 0;
+                key[3].style.backgroundColor = "#444444";
+                key[3].style.color="#ffffff";
+            },
+            function(){
+                sndG.play();
+                sndG.currentTime = 0;
+                key[4].style.backgroundColor = "#444444";
+                key[4].style.color="#ffffff";
+            },
+            function(){
+                sndH.play();
+                sndH.currentTime = 0;
+                key[5].style.backgroundColor = "#444444";
+                key[5].style.color="#ffffff";
+            },
+            function(){
+                sndJ.play();
+                sndJ.currentTime = 0;
+                key[6].style.backgroundColor = "#444444";
+                key[6].style.color="#ffffff";
+            },
+            function(){
+                sndK.play();
+                sndK.currentTime = 0;
+                key[7].style.backgroundColor = "#444444";
+                key[7].style.color="#ffffff";
+            },
+            function(){
+                sndL.play();
+                sndL.currentTime = 0;
+                key[8].style.backgroundColor = "#444444";
+                key[8].style.color="#ffffff";
+            }
+        ];
+
+        function keyDown(e) {
+            var key = e.keyCode;
+            console.log(key);
+            switch (key) {
+                case 65:
+                    eventListeners[0]();
+                    break;
+                case 83:
+                    eventListeners[1]();
+                    break;
+                case 68:
+                    eventListeners[2]();
+                    break;
+                case 70:
+                    eventListeners[3]();
+                    break;
+                case 71:
+                    eventListeners[4]();
+                    break;
+                case 72:
+                    eventListeners[5]();
+                    break;
+                case 74:
+                    eventListeners[6]();
+                    break;
+                case 75:
+                    eventListeners[7]();
+                    break;
+                case 76:
+                    eventListeners[8]();
+                    break;
+
+            }
+        }
+
+
+
+        document.addEventListener('keydown',keyDown );
+        document.addEventListener('keyup', function(){
+           for(var i = 0; i < key.length; i++){
+               key[i].style.backgroundColor = "";
+               key[i].style.color = "";
+           }
+        });
+
+        document.addEventListener('mouseup', function(){
+            for(var i = 0; i < key.length; i++){
+                key[i].style.backgroundColor = "";
+                key[i].style.color = "";
+            }
+        });
+
+        for(var i = 0; i < key.length; i++){
+            key[i].addEventListener('mousedown', eventListeners[i]);
+        }
+
+        document.addEventListener('touchend', function(){
+            for(var i = 0; i < key.length; i++){
+                key[i].style.backgroundColor = "";
+                key[i].style.color = "";
+            }
+        });
+
+        for(var i = 0; i < key.length; i++){
+            key[i].addEventListener('touchstart', eventListeners[i]);
+        }
+    </script>
+</body>
+</html>
