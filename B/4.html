@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B4</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var  counter = 0;
+    //counter = 0 --> Nothing of the sequence DVM is pressed
+    //counter = 1 --> D has been pressed
+    //counter = 2 --> V has been pressed
+    document.addEventListener('keydown', function(e){
+        if(e.key=="D"){
+            counter = 1;
+        }
+        else if(e.key=="V" && counter == 1){
+            counter = 2;
+        }
+        else if(e.key=="M" && counter == 2){
+            document.body.innerHTML += "Front-End development is fun <br/>";
+            counter = 0;
+        }
+        else if(e.key=="Shift" || e.key=="CapsLock"){
+
+        }
+        else{
+            counter = 0;
+        }
+        console.log(counter, e.key);
+    });
+</script>
+</body>
+</html>
