@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B3</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0px;
+        border: 0px;
+        outline: 0px;
+        padding: 0px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size:18px;
+    }
+    html, body{
+        width: 100%;
+        height: 100%;
+    }
+
+    body{
+        background-color: #fff47c;
+    }
+    #body-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+        width: 100%;
+    }
+
+    .checkitem{
+        height: 75px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .checkitem:nth-child(1){
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .checkitem:nth-child(7){
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    label{
+        margin-left: 15px;
+    }
+    form{
+        border: 1px solid black;
+        border-radius: 15px;
+        box-shadow: 5px 5px 2px #948617;
+    }
+</style>
+<body>
+    <div id="body-wrapper">
+        <form action="">
+            <fieldset>
+                <div class="checkitem"><input type="checkbox" id="1"><label for="1">
+                    This is an inbox layout
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="2"><label for="2">
+                    Check one item
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="3"><label for="3">
+                    Hold down your Shift key
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="4"><label for="4">
+                    Check a lower item
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="5"><label for="5">
+                    Everything in between should be checked
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="6"><label for="6">
+                    Try to do it without libraries
+                </label></div>
+                <div class="checkitem"><input type="checkbox" id="7"><label for="7">
+                    Just regular Javascript
+                </label></div>
+            </fieldset>
+        </form>
+    </div>
+    <script type="text/javascript">
+        var isShiftPressed = 0;
+        var lastChecked;
+        var nowChecked;
+        var inputFields = document.getElementsByTagName('input');
+        var checkBetween = function(start, end){
+            for(var i = start; i<=end; i++){
+                inputFields[i].checked = true;
+            }
+        };
+        var clicked = function(){
+            nowChecked = this.id - 1;
+            if(isShiftPressed && inputFields[nowChecked].checked==true && inputFields[lastChecked].checked==true){
+//                console.log(inputFields[nowChecked]);
+                if(nowChecked>lastChecked){
+                    checkBetween(lastChecked, nowChecked);
+                }
+                else{
+                    checkBetween(nowChecked, lastChecked);
+                }
+            }
+
+            lastChecked = this.id - 1;
+        };
+
+        document.addEventListener('keydown', function(e){
+            if(e.key=="Shift") {
+                isShiftPressed = 1;
+            }
+        });
+        document.addEventListener('keyup', function(e){
+            if(e.key=="Shift") {
+                isShiftPressed = 0;
+            }
+        });
+
+
+        for(var i = 0; i < 7 ; i++){
+            inputFields[i].addEventListener('click', clicked);
+        }
+
+        window.onload = function(){
+            for(var i = 0; i < 7; i++){
+                inputFields[i].checked = false;
+            }
+        }
+//        setInterval(function(){console.log(isShiftPressed, nowChecked, lastChecked)}, 1000);
+    </script>
+</body>
+</html>
