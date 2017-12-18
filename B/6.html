@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B6</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            outline: 0px;
+            border: 0px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        #body-wrapper{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #list-wrapper{
+            height: 80%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2{
+            text-align: center;
+            padding: 10px;
+            box-sizing: content-box;
+        }
+
+        #list{
+            flex-grow: 1;
+            border: 1px solid black;
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .list-item{
+            border-bottom: 1px solid #aaaaaa;
+            padding: 5px;
+            font-size: 18px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        input[type="button"]{
+            padding: 5px;
+            font-weight: bolder;
+            font-size: 18px;
+        }
+
+        #new-item{
+            display: flex;
+            justify-content: space-around;
+            align-content:center;
+            padding: 15px;
+        }
+        input[type="text"]{
+            border: 1px solid black;
+            padding: 15px;
+            border-radius: 5px;
+
+        }
+        input[type="submit"]{
+            border: 1px solid black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        @media screen and (max-width: 450px) {
+            #list-wrapper{
+                width: 100%;
+            }
+            #new-item{
+                flex-direction: column;
+            }
+            input[type="submit"]{
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="body-wrapper">
+        <div id="list-wrapper">
+            <h2>FRONT-END TECH</h2>
+            <div id="list">
+                <!--<div class="list-item">-->
+                    <!--sadfsadfsalfdkjlsadkjflkn-->
+                    <!--<input type="button" value="X">-->
+                <!--</div>-->
+                <!--<div class="list-item">-->
+                    <!--sadfsadfsalfdkjlsadkjflkn-->
+                    <!--<input type="button" value="X">-->
+                <!--</div>-->
+                <!--<div class="list-item">-->
+                    <!--sadfsadfsalfdkjlsadkjflkn-->
+                    <!--<input type="button" value="X">-->
+                <!--</div>-->
+            </div>
+            <div id="new-item">
+                <input type="text" id="new-item-name" placeholder="Name of new item"><input type="submit" value="Add Item">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var names = [];
+        var newItemName = document.querySelector('input[type="text"]'),
+            newItemSubmit = document.querySelector('input[type="submit"]'),
+            list = document.querySelector('#list'),
+            removeItem;
+        newItemSubmit.addEventListener('click', function(){
+            if(!(/^ *$/.test(newItemName.value))){
+                names.push(newItemName.value);
+                newItemName.value="";
+                console.log(names);
+                list.innerHTML="";
+                names.forEach(function(name){
+                    var div = document.createElement('div');
+                    var text = document.createTextNode(name);
+                    var cross = document.createElement('input');
+                    cross.setAttribute('type', 'button');
+                    cross.setAttribute('value', 'X');
+                    div.classList.add('list-item');
+                    div.appendChild(text);
+                    div.appendChild(cross);
+                    list.appendChild(div);
+                });
+                removeItem = document.querySelectorAll('input[type="button"]');
+                console.log(removeItem);
+                /*for(var x = 0; x <removeItem.length; x++){
+                    removeItem[x].addEventListener('click', function(){
+                        names.splice(x, 1);
+                        console.log(x);
+                    });
+                }*/
+                removeItem[removeItem.length-1].addEventListener('click', function(){
+                    names.splice(removeItem.length-1, 1);
+                });
+            }
+            else{
+                console.log('Is empty');
+            }
+        });
+
+        function lsTest(){
+            var test = 'test';
+            try {
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch(e) {
+                return false;
+            }
+        }
+        if(lsTest() === true){
+            //Local storage is available
+        }else{
+            alert("Local storage not available, wont be able to store the names");
+        }
+    </script>
+</body>
+</html>
