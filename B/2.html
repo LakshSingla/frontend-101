@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B2</title>
+
+    <style type="text/css">
+        *{
+            margin: 0px;
+            border: 0px;
+            outline: 0px;
+            padding: 0px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        #body-wrapper{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ef6643;
+        }
+        #clock-wrapper{
+            height: 80%;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        #clock{
+            height: 100%;
+            width: 100%;
+            border-radius: 100%;
+            border: 5px solid white;
+        }
+        #sec, #min, #hr{
+            border: 3px solid black;
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 6px);
+            transform-origin: top center;
+        }
+
+        #sec{
+            height: 40%;
+            width: 0px;
+            transform: rotate(0deg);
+        }
+
+        #min{
+            height: 35%;
+            width: 0px;
+            transform: rotate(0deg);
+        }
+
+        #hr{
+            height: 25%;
+            width: 0px;
+            transform: rotate(0deg);
+        }
+        @media(orientation: portrait){
+            #clock-wrapper{
+                width: 80vw;
+                height: 80vw;
+            }
+        }
+        @media(orientation: landscape){
+            #clock-wrapper{
+                width: 80vh;
+                height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="body-wrapper">
+        <div id="clock-wrapper">
+            <div id="clock">
+                <div id="sec"></div>
+                <div id="min"></div>
+                <div id="hr"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var secHand = document.getElementById('sec'),
+            minHand = document.getElementById('min'),
+            hrHand = document.getElementById('hr');
+        setInterval(function(){
+            var timeNow = new Date();
+            var secHandRotate = (timeNow.getSeconds() - 30)/60 * 360,
+                minHandRotate = (timeNow.getMinutes() - 30)/60 * 360,
+                hrHandRotate = (timeNow.getHours() - 6)/12 * 360;
+            secHand.style.transform = 'rotate('+secHandRotate+'deg)';
+            minHand.style.transform = 'rotate('+minHandRotate+'deg)';
+            hrHand.style.transform = 'rotate('+hrHandRotate+'deg)';
+            console.log(secHandRotate, minHandRotate, hrHandRotate);
+        },1000);
+    </script>
+</body>
+</html>
