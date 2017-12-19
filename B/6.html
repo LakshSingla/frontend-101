@@ -111,7 +111,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        var names = [];
+        var names;
         var newItemName = document.querySelector('input[type="text"]'),
             newItemSubmit = document.querySelectorAll('input[type="button"]')[0],
             removeItemSubmit = document.querySelectorAll('input[type="button"]')[1];
@@ -123,11 +123,8 @@
                 var div = document.createElement('div');
                 var text = document.createTextNode(name);
                 var cross = document.createElement('input');
-                cross.setAttribute('type', 'button');
-                cross.setAttribute('value', 'X');
                 div.classList.add('list-item');
                 div.appendChild(text);
-                div.appendChild(cross);
                 list.appendChild(div);
             });
         };
@@ -136,6 +133,8 @@
             if(!(/^ *$/.test(newItemName.value))){
                 names.push(newItemName.value);
                 newItemName.value="";
+                localStorage.setItem(LOCALSTORAGELOCATION, JSON.stringify(names));
+                console.log(localStorage.getItem(LOCALSTORAGELOCATION));
                 viewUpdate();
             }
             else{
@@ -146,6 +145,8 @@
             names = names.filter(function(name){
                 return name!=newItemName.value;
             });
+            localStorage.setItem(LOCALSTORAGELOCATION, JSON.stringify(names));
+            console.log(localStorage.getItem(LOCALSTORAGELOCATION));
             viewUpdate();
             newItemName.value="";
         });
@@ -164,12 +165,13 @@
             if (lsTest() === true) {
                 try {
                     var storedData = JSON.parse(localStorage.getItem(LOCALSTORAGELOCATION));
-                    if(!storedData){
+                    if(storedData){
                         names = storedData;
                     }
                     else{
                         names=[];
                     }
+                    console.log(names);
                 } catch(e){
                     names = [];
                 }finally{
@@ -182,7 +184,7 @@
         };
 
         window.onbeforeunload = function(){
-            localStorage.setItem(LOCALSTORAGELOCATION, JSON.stringify(names));
+
             return null;
         };
 
