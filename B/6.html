@@ -101,18 +101,7 @@
         <div id="list-wrapper">
             <h2>FRONT-END TECH</h2>
             <div id="list">
-                <!--<div class="list-item">-->
-                    <!--sadfsadfsalfdkjlsadkjflkn-->
-                    <!--<input type="button" value="X">-->
-                <!--</div>-->
-                <!--<div class="list-item">-->
-                    <!--sadfsadfsalfdkjlsadkjflkn-->
-                    <!--<input type="button" value="X">-->
-                <!--</div>-->
-                <!--<div class="list-item">-->
-                    <!--sadfsadfsalfdkjlsadkjflkn-->
-                    <!--<input type="button" value="X">-->
-                <!--</div>-->
+
             </div>
             <div id="new-item">
                 <input type="text" id="new-item-name" placeholder="Name of new item">
@@ -127,59 +116,38 @@
             newItemSubmit = document.querySelectorAll('input[type="button"]')[0],
             removeItemSubmit = document.querySelectorAll('input[type="button"]')[1];
             list = document.querySelector('#list');
-//            removeItem;
-
-        var displayError = function(msg){
-            errorMsg.style.display = "block";
-            setTimeout(function(){
-                errorMsg.style.display = "none";
-            }, 2000);
+        const LOCALSTORAGELOCATION = 'FrontEndTech';
+        var viewUpdate = function(){
+            list.innerHTML="";
+            names.forEach(function(name){
+                var div = document.createElement('div');
+                var text = document.createTextNode(name);
+                var cross = document.createElement('input');
+                cross.setAttribute('type', 'button');
+                cross.setAttribute('value', 'X');
+                div.classList.add('list-item');
+                div.appendChild(text);
+                div.appendChild(cross);
+                list.appendChild(div);
+            });
         };
+
         newItemSubmit.addEventListener('click', function(){
-            if(!(/^ *$/.test(newItemName.value)) && names.indexOf(newItemName.value)==-1){
+            if(!(/^ *$/.test(newItemName.value))){
                 names.push(newItemName.value);
                 newItemName.value="";
-                console.log(names);
-                list.innerHTML="";
-                names.forEach(function(name){
-                    var div = document.createElement('div');
-                    var text = document.createTextNode(name);
-                    var cross = document.createElement('input');
-                    cross.setAttribute('type', 'button');
-                    cross.setAttribute('value', 'X');
-                    div.classList.add('list-item');
-                    div.appendChild(text);
-                    div.appendChild(cross);
-                    list.appendChild(div);
-                });
-//                removeItem = document.querySelectorAll('input[type="button"]');
-//                console.log(removeItem);
-                /*for(var x = 0; x <removeItem.length; x++){
-                    removeItem[x].addEventListener('click', function(){
-                        names.splice(x, 1);
-                        console.log(x);
-                    });
-                }*/
-                /*var x = names.length - 1;
-                var y = removeItem[names.length - 1];
-                console.log(x);
-                y.onclick = function(){
-                    console.log(x);
-                    names.splice(x, 1);
-                    console.log(names);
-                };*/
+                viewUpdate();
             }
             else{
                 console.log('Is empty');
             }
         });
         removeItemSubmit.addEventListener('click', function(){
-            console.log('Remove item works');
             names = names.filter(function(name){
-//                console.log(name!=newItemName.value);
                 return name!=newItemName.value;
             });
-            console.log(names);
+            viewUpdate();
+            newItemName.value="";
         });
 
         function lsTest(){
@@ -192,11 +160,32 @@
                 return false;
             }
         }
-        if(lsTest() === true){
-            //Local storage is available
-        }else{
-            alert("Local storage not available, wont be able to store the names");
-        }
+        window.onload = function() {
+            if (lsTest() === true) {
+                try {
+                    var storedData = JSON.parse(localStorage.getItem(LOCALSTORAGELOCATION));
+                    if(!storedData){
+                        names = storedData;
+                    }
+                    else{
+                        names=[];
+                    }
+                } catch(e){
+                    names = [];
+                }finally{
+                    viewUpdate();
+                }
+            }
+            else {
+                alert("Local storage not available, wont be able to store the names");
+            }
+        };
+
+        window.onbeforeunload = function(){
+            localStorage.setItem(LOCALSTORAGELOCATION, JSON.stringify(names));
+            return null;
+        };
+
     </script>
 </body>
 </html>
