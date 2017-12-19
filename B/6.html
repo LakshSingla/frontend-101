@@ -41,10 +41,11 @@
         }
 
         #list{
-            flex-grow: 1;
+            /*flex-grow: 1;*/
             border: 1px solid black;
             overflow: auto;
             padding: 20px;
+            height: 80%;
         }
 
         .list-item{
@@ -68,6 +69,7 @@
             justify-content: space-around;
             align-content:center;
             padding: 15px;
+            height: 20%;
         }
         input[type="text"]{
             border: 1px solid black;
@@ -85,7 +87,7 @@
                 width: 100%;
             }
             #new-item{
-                flex-direction: column;
+                /*flex-direction: column;*/
             }
             input[type="submit"]{
                 margin-top: 5px;
@@ -113,18 +115,28 @@
                 <!--</div>-->
             </div>
             <div id="new-item">
-                <input type="text" id="new-item-name" placeholder="Name of new item"><input type="submit" value="Add Item">
+                <input type="text" id="new-item-name" placeholder="Name of new item">
+                <input type="button" value="Add Item">
+                <input type="button" value="Delete Item">
             </div>
         </div>
     </div>
     <script type="text/javascript">
         var names = [];
         var newItemName = document.querySelector('input[type="text"]'),
-            newItemSubmit = document.querySelector('input[type="submit"]'),
-            list = document.querySelector('#list'),
-            removeItem;
+            newItemSubmit = document.querySelectorAll('input[type="button"]')[0],
+            removeItemSubmit = document.querySelectorAll('input[type="button"]')[1];
+            list = document.querySelector('#list');
+//            removeItem;
+
+        var displayError = function(msg){
+            errorMsg.style.display = "block";
+            setTimeout(function(){
+                errorMsg.style.display = "none";
+            }, 2000);
+        };
         newItemSubmit.addEventListener('click', function(){
-            if(!(/^ *$/.test(newItemName.value))){
+            if(!(/^ *$/.test(newItemName.value)) && names.indexOf(newItemName.value)==-1){
                 names.push(newItemName.value);
                 newItemName.value="";
                 console.log(names);
@@ -140,21 +152,34 @@
                     div.appendChild(cross);
                     list.appendChild(div);
                 });
-                removeItem = document.querySelectorAll('input[type="button"]');
-                console.log(removeItem);
+//                removeItem = document.querySelectorAll('input[type="button"]');
+//                console.log(removeItem);
                 /*for(var x = 0; x <removeItem.length; x++){
                     removeItem[x].addEventListener('click', function(){
                         names.splice(x, 1);
                         console.log(x);
                     });
                 }*/
-                removeItem[removeItem.length-1].addEventListener('click', function(){
-                    names.splice(removeItem.length-1, 1);
-                });
+                /*var x = names.length - 1;
+                var y = removeItem[names.length - 1];
+                console.log(x);
+                y.onclick = function(){
+                    console.log(x);
+                    names.splice(x, 1);
+                    console.log(names);
+                };*/
             }
             else{
                 console.log('Is empty');
             }
+        });
+        removeItemSubmit.addEventListener('click', function(){
+            console.log('Remove item works');
+            names = names.filter(function(name){
+//                console.log(name!=newItemName.value);
+                return name!=newItemName.value;
+            });
+            console.log(names);
         });
 
         function lsTest(){
