@@ -36,6 +36,7 @@
         position: relative;
         transform: rotateY(-35deg);
         transition: all 0.2s linear;
+        cursor: pointer;
     }
     #btn-1 .front{
         position: absolute;
@@ -68,6 +69,70 @@
     #btn-1:hover{
         transform: rotateY(0deg);
     }
+
+    #btn-2{
+        height: 50px;
+        width: 100px;
+        perspective: 500px;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: rotateY(-45deg);
+        transition: all 0.2s linear;
+    }
+
+    .face{
+        position: absolute;
+        height: 50px;
+        width: 100px;
+        background-color: red;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        transition: all 0.2s linear;
+        border: 2px solid black
+    }
+
+    #btn-2 .front{
+        /*transform: translateZ(50px);*/
+    }
+
+    #btn-2 .bottom{
+        transform-origin: center bottom;
+        transform: rotateX(90deg) translateZ(50px);
+    }
+
+    #btn-2 .top{
+        transform-origin: center top;
+        transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    #btn-2 .left{
+        width: 50px;
+        transform-origin: left center;
+        transform: rotateY(90deg) translateZ(50px);
+    }
+
+    #btn-2 .right{
+        width: 50px;
+        transform-origin: 50px center;
+        transform: rotateY(90deg) translateX(100px);
+    }
+    #btn-2 .front:hover ~ .bottom{
+        transform: rotateX(180deg) translateZ(0px);
+    }
+    #btn-2 .front:hover ~ .top{
+        transform: rotateX(-180deg) translateZ(0px);
+    }
+    #btn-2 .front:hover ~ .left{
+        transform: rotateY(180deg) translateZ(0px);
+    }
+    #btn-2 .front:hover ~ .right{
+        transform: rotateY(0deg) translateX(100px) translateZ(0px);
+    }
+    #btn-2 .front:hover{
+        transform: translateZ(0px);
+    }
+
 </style>
 <body>
 
@@ -80,7 +145,23 @@
         </div>
     </div>
 
-    <div id="btn-2"></div>
+    <div id="btn-2">
+        <div class="front face">BUTTON</div>
+        <div class="left face"></div>
+        <div class="right face"></div>
+        <div class="top face"></div>
+        <div class="bottom face"></div>
+    </div>
+    <script>
+        let front = document.querySelector('#btn-2 .front');
+        let btn2  = document.getElementById('btn-2');
+        front.addEventListener('mouseenter', function(){
+            btn2.style.transform = 'rotateY(0deg)';
+        });
+        front.addEventListener('mouseleave', function(){
+            btn2.style.transform = 'rotateY(-45deg)';
+        });
 
+    </script>
 </body>
 </html>
