@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>B7</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+        outline: 0px;
+        border: 0px;
+        box-sizing: border-box;
+    }
+    html, body{
+        height: 100%;
+        width: 100%;
+    }
+    img{
+        width: 100%;
+        transform : scale(1);
+        transform-origin: 100px 100px;
+        transition: all 0.5s linear ;
+    }
+</style>
+<body>
+<img src="B7_asset/worldimg.jpg" alt="Unable to load the image">
+<script type="text/javascript">
+    const MAX_SCALE = 10,
+        MIN_SCALE = 0.5;
+    const SCALE = 0.05;
+    var imgScale = 1;
+    var img = document.getElementsByTagName('img')[0];
+    document.addEventListener('wheel',function(e){
+//        console.log(e);
+        e.preventDefault();
+        var x = e.clientX,
+            y = e.clientY;
+
+//        console.log(e.clientX, e.clientY);
+        img.style.transformOrigin =  String(e.clientX) + ' '+  String(e.clientY);
+        if(e.deltaY > 0 && imgScale<MAX_SCALE)
+            imgScale+=SCALE;
+        else if(e.deltaY < 0 && imgScale>MIN_SCALE) {
+            imgScale-=SCALE;
+        }
+        console.log(img.style.transformOrigin);
+        img.style.transform = 'scale('+imgScale+')';
+    });
+</script>
+</body>
+</html>

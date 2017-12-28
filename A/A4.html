@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A4</title>
+</head>
+<body>
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+        outline: 0px;
+        border: 0px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html, body{
+        height: 100%;
+        width: 100%;
+    }
+    header{
+        background-color: magenta;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        height: 75px;
+        position: relative;
+    }
+    #logo{
+        margin-left: 50px;
+        font-weight: bolder;
+        font-size: 24px;
+        line-height: 75px;
+        flex-grow: 1;
+    }
+    nav{
+        margin-right: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        justify-self: flex-end;
+    }
+    .link{
+        margin: 0px 25px;
+    }
+    .hamburger{
+        display: none;
+    }
+    @media screen and (max-width: 550px) {
+        nav{
+            display: none;
+        }
+        .hamburger{
+            display: flex;
+            /*position: absolute;*/
+            width: calc(50% - 90px);
+            padding-left: 20px;
+        }
+        .hw{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 30px;
+        }
+        .hl{
+            height: 5px;
+            width: 80%;
+            -webkit-border-radius: 1000px;
+            -moz-border-radius: 1000px;
+            border-radius: 1000px;
+            margin: 1px 0;
+            background-color: white;
+        }
+        
+    }
+</style>
+    <header>
+        <div class="hamburger">
+            <div class="hw">
+                <div class="hl"></div>
+                <div class="hl"></div>
+                <div class="hl"></div>
+            </div>
+
+        </div>
+        <div id="logo">
+            LOGO
+        </div>
+        <nav>
+            <div class="link">link</div>
+            <div class="link">link</div>
+            <div class="link">link</div>
+            <div class="link">link</div>
+        </nav>
+    </header>
+</body>
+</html>
