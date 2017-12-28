@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A5</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+        outline: 0px;
+        border: 0px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html, body{
+        height: 100%;
+        width: 100%;
+    }
+    body{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #btn-1{
+        height: 50px;
+        width: 100px;
+        perspective: 500px;
+        transform-origin: left center;
+        transform-style: preserve-3d;
+        position: relative;
+        transform: rotateY(-35deg);
+        transition: all 0.2s linear;
+    }
+    #btn-1 .front{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        -webkit-box-shadow: inset 0 0 2px coral;
+        -moz-box-shadow: inset 0 0 2px coral;
+        box-shadow: inset 0px 0px 2px coral;
+        /*transform: translateZ(50px);*/
+    }
+    #btn-1 *{
+        border: 2px solid black;
+    }
+    #btn-1 .side{
+        background-color: darkred;
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        -webkit-transform-origin: left center;
+        -moz-transform-origin: left center;
+        -ms-transform-origin: left center;
+        -o-transform-origin: left center;
+        transform-origin: left center;
+        transform: translateX(100px) rotateY(90deg);
+    }
+    #btn-1:hover{
+        transform: rotateY(0deg);
+    }
+</style>
+<body>
+
+    <div id="btn-1">
+        <div class="front">
+            BUTTON
+        </div>
+        <div class="side">
+            <!--SIDE-->
+        </div>
+    </div>
+
+    <div id="btn-2"></div>
+
+</body>
+</html>
