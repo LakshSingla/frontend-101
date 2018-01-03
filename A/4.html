@@ -53,7 +53,18 @@
     }
     @media screen and (max-width: 550px) {
         nav{
-            display: none;
+            display : none;
+            position: absolute;
+            bottom: -150px;
+            background-color: pink;
+            height: 150px;
+            width: 100vw;
+            /*display: flex;*/
+            justify-content: space-around;
+            flex-direction: column;
+            opacity : 0;
+            transform: translateY(25px);
+            transition: all 0.5s ease-in;
         }
         .hamburger{
             display: flex;
@@ -100,5 +111,24 @@
             <div class="link">link</div>
         </nav>
     </header>
+<script type="text/javascript">
+    let ham  = document.getElementsByClassName('hamburger')[0];
+    let nav  = document.getElementsByTagName('nav')[0];
+    let toggleState = false;
+    ham.addEventListener('click', function(){
+        if(toggleState){
+            toggleState = false;
+            nav.style.display = 'none';
+            nav.style.transform = 'translateY(15px)';
+            nav.style.opacity = '0';
+        }
+        else{
+          toggleState = true;
+          nav.style.display = 'flex';
+          nav.style.transform = 'translateY(0px)';
+          nav.style.opacity = '1';
+        }
+    });
+</script>
 </body>
 </html>
