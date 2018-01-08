@@ -24,6 +24,9 @@
         justify-content: center;
         align-items: center;
     }
+    #iphone-wrapper{
+        position: relative;
+    }
     #case-1, #case-2, #case-3, #case-4 {
         /*border: 1px solid black;*/
         -webkit-border-radius: 35px;
@@ -41,25 +44,63 @@
         height: 625px;
         width: 350px;
         background-color: #FFFFFF;
-        box-shadow: inset 0 0 10px 2px  black;
-        border-radius: 40px;
+        box-shadow: inset 0 0 10px 2px #666666;
+        border-radius: 37px;
     }
     #case-2{
-        height: 615px;
-        width: 340px;
+        height: 617px;
+        width: 342px;
         background-color: #1b1b1b;
 
     }
     #case-3{
         height: 607px;
-        width: 335px;
+        width: 333.7px;
         border-radius: 32px;
+        background-color: #e0e0e0;
     }
     #case-4{
         height: 585px;
         width: 315px;
-        box-shadow: 0 0 25px 7px black;
+        box-shadow: 0 0 11px 7px black;
         border-radius: 30px;
+        position: relative;
+        background-image: radial-gradient(ellipse farthest-corner at 25% 70%, rgba(255,255,255,0.8), rgba(255,255,255,0) 75%),
+                radial-gradient(circle farthest-side at 110% 20%, rgba(107, 45, 229, 1), rgba(194, 124, 194, 0.1) 50%),
+                linear-gradient(to bottom , #F60089 0%, #F79086 100%);
+    }
+    #btn-1, #btn-2, #btn-3{
+        position: absolute;
+        width: 3px;
+        /*border : 1px solid black;*/
+        left: -3px;
+        top: 0;
+        box-shadow: inset 0 0 2px 0.5px #888888;
+        background-color: #cccccc;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    #btn-1{
+        height: 25px;
+        top: 70px;
+    }
+    #btn-2, #btn-3{
+        height: 50px;
+        top: 115px;
+    }
+    #btn-3{
+        top: 180px;
+    }
+    #reciever{
+        width: 160px;
+        position: absolute;
+        top: 0;
+        height: 25px;
+        left: calc((315px - 160px) / 2);
+        border: 1px solid black;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-color: #000000;
     }
 </style>
 
@@ -69,10 +110,15 @@
             <div id="case-1">
                 <div id="case-2">
                     <div id="case-3">
-                        <div id="case-4"></div>
+                        <div id="case-4">
+                            <div id="reciever"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div id="btn-1"></div>
+            <div id="btn-2"></div>
+            <div id="btn-3"></div>
         </div>
     </div>
 </body>
