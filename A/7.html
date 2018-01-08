@@ -8,16 +8,68 @@
     <title>A7</title>
 </head>
 <style type="text/css">
+    *{
+        outline: 0px;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html, body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #case-1, #case-2, #case-3, #case-4 {
+        /*border: 1px solid black;*/
+        -webkit-border-radius: 35px;
+        -moz-border-radius: 35px;
+        border-radius: 35px;
+        background-color: white;
+    }
+    #case-1, #case-2, #case-3{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #case-1{
+        border: none;
+        height: 625px;
+        width: 350px;
+        background-color: #FFFFFF;
+        box-shadow: inset 0 0 10px 2px  black;
+        border-radius: 40px;
+    }
+    #case-2{
+        height: 615px;
+        width: 340px;
+        background-color: #1b1b1b;
 
+    }
+    #case-3{
+        height: 607px;
+        width: 335px;
+        border-radius: 32px;
+    }
+    #case-4{
+        height: 585px;
+        width: 315px;
+        box-shadow: 0 0 25px 7px black;
+        border-radius: 30px;
+    }
 </style>
+
 <body>
     <div id="body-wrapper">
         <div id="iphone-wrapper">
             <div id="case-1">
                 <div id="case-2">
                     <div id="case-3">
-                        <div id="case-4">
-                        </div>
+                        <div id="case-4"></div>
                     </div>
                 </div>
             </div>
